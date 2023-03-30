@@ -1,33 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
-import * as auth from '../utils/auth.js';
+import { useForm } from '../hooks/useForm.js';
 
-const Register = ({ onRegistered }) => {
-  const [formValue, setFormValue] = useState({
-    email: '',
-    password: ''
-  })
-  const handleChange = (e) => {
-    const {name, value} = e.target;
-
-    setFormValue({
-      ...formValue,
-      [name]: value
-    });
-  }
+const Register = ({ onSubmit }) => {
+  const {formValue, handleChange} = useForm({
+    password: '',
+    email: ''
+  });
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formValue.password && formValue.email) {
-      const { password, email } = formValue;
-      auth.register(password, email)
-        .then(() => {
-          onRegistered(true);
-        }) 
-        .catch(() => {
-          onRegistered(false);
-        });
-    } 
+    onSubmit(formValue);
   } 
 
   return (

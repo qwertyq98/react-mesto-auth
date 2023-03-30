@@ -1,37 +1,28 @@
 import React from 'react'; 
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
-function Header({loggedIn, userData}) {
+function Header({loggedIn, userData, signOut}) {
   const location = useLocation();
-  const navigate = useNavigate();
-
-  function signOut(){
-    localStorage.removeItem('jwt');
-    navigate('/login');
-  }
 
   return (
-    <>
-      <header className="header">
+    <header className="header">
         <div className="header__logo" />
         { loggedIn ? 
           <>
             <div className='header__info'>
               <div className='header__email'>{userData.email}</div>
-              <a className='header__buttom' href='/sign-in' onClick={signOut}>Выйти</a>
+              <Link className='header__buttom' to={'/sign-in'} onClick={signOut}>Выйти</Link>
             </div>
           </> : 
           location.pathname === '/sign-up' ? 
             <div className='header__info'>
-              <a className='header__buttom' href='/sign-in'>Войти</a>
+              <Link className='header__buttom' to={'/sign-in'}>Войти</Link>
             </div> :  
             <div className='header__info'>
-              <a className='header__buttom' href='/sign-up'>Регистрация</a>
+              <Link className='header__buttom' to={'/sign-up'}>Регистрация</Link>
             </div> 
         } 
       </header>
-    </>
-    
   );
 }
 

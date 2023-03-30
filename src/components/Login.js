@@ -1,36 +1,15 @@
-import React, {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
-import * as auth from '../utils/auth.js';
+import React from 'react';
+import { useForm } from '../hooks/useForm.js';
 
-const Login = ({ handleLogin }) => {
-  const [formValue, setFormValue] = useState({
+const Login = ({ onSubmit }) => {
+  const {formValue, handleChange} = useForm({
     password: '',
     email: ''
-  })
+  });
 
-  const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    const {name, value} = e.target;
-
-    setFormValue({
-      ...formValue,
-      [name]: value
-    });
-  }
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formValue.email || !formValue.password){
-      return;
-    }
-    auth.authorize(formValue.password, formValue.email)
-      .then((data) => {
-        if (data.token) {
-          handleLogin(formValue.email);
-          setFormValue({ password: '', email: '' });
-          navigate('/', {replace: true});
-        }
-      })
+    onSubmit(formValue);
   }
 
   return (
