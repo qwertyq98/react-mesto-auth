@@ -1,33 +1,31 @@
 import React from "react";
 import PopupWithForm from './PopupWithForm';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { useForm } from "../hooks/useForm";
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
+  const {formValue, setFormValue, handleChange} = useForm({
+    userName: '',
+    userAbout: ''
+  });
+
   const currentUser = React.useContext(CurrentUserContext);
-  const [name, setName] = React.useState('');
-  const [description, setDescription] = React.useState('');
 
   React.useEffect(() => {
     if(isOpen) {
-      setName(currentUser.name);
-      setDescription(currentUser.about);
+      setFormValue({
+        userName: currentUser.name,
+        userAbout: currentUser.about
+      });
     }
-  }, [currentUser, isOpen]);
-
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
-
-  function handleDescriptionChange(e) {
-    setDescription(e.target.value);
-  }
+  }, [currentUser, isOpen, setFormValue]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    // Передаём значения управляемых компонентов во внешний обработчик
+    
     onUpdateUser({
-      name,
-      about: description,
+      name: formValue.userName,
+      about: formValue.userAbout,
     });
   }
 
@@ -50,8 +48,8 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
           className="popup__input popup__input_type_name"
           placeholder='Введите имя' 
           required 
-          value={name}
-          onChange={handleNameChange}
+          value={formValue.userName}
+          onChange={handleChange}
         />
         <span className="popup__error userName-input-error"></span>
         <input 
@@ -63,8 +61,8 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
           className="popup__input popup__input_type_info"
           placeholder='Введите профессию' 
           required 
-          value={description}
-          onChange={handleDescriptionChange}
+          value={formValue.userAbout}
+          onChange={handleChange}
         />
         <span className="popup__error userAbout-input-error"></span>
     </PopupWithForm>
