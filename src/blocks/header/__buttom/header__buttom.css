@@ -7,9 +7,14 @@
   transition: .2s;
   text-decoration: none;
   margin-left: 24px;
-  margin-right: 27px;
 }
 
 .header__buttom:hover {
   opacity: 0.6;
+}
+
+@media screen and (max-width: 910px) {
+  .header__buttom {
+    margin: 0 27px;
+  }
 }

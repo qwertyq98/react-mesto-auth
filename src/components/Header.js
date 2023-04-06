@@ -1,28 +1,51 @@
 import React from 'react'; 
 import { useLocation, Link } from 'react-router-dom';
 
-function Header({loggedIn, userData, signOut}) {
+function Header({loggedIn, userData, signOut, burger, handleBurger}) {
   const location = useLocation();
-
   return (
-    <header className="header">
-        <div className="header__logo" />
+    <> { loggedIn ?
+      <div className={burger ? 'header__active' : 'header__null'}>
+        <div className='header__email'>{userData.email}</div>
+        <Link className='header__buttom' to={'/sign-in'} onClick={signOut}>Выйти</Link>
+      </div> : '' }
+      <header className= {burger && loggedIn ? 'header header__column' : 'header'}>
         { loggedIn ? 
           <>
-            <div className='header__info'>
-              <div className='header__email'>{userData.email}</div>
-              <Link className='header__buttom' to={'/sign-in'} onClick={signOut}>Выйти</Link>
-            </div>
+            { burger ?
+              <> 
+                <div className='header__info'>
+                  <div className="header__logo" />
+                  <button className='header__burger header__burger_close' type='button' onClick={handleBurger} />
+                </div>
+              </>:
+              <>
+                <div className="header__logo" />
+                <div className='header__info'>
+                  <div className='header__email header__email_hide'>{userData.email}</div>
+                  <Link className='header__buttom header__buttom_hide' to={'/sign-in'} onClick={signOut}>Выйти</Link>
+                  <button className='header__burger' type='button' onClick={handleBurger} />            
+                </div>
+              </>
+            }
           </> : 
           location.pathname === '/sign-up' ? 
-            <div className='header__info'>
-              <Link className='header__buttom' to={'/sign-in'}>Войти</Link>
-            </div> :  
-            <div className='header__info'>
-              <Link className='header__buttom' to={'/sign-up'}>Регистрация</Link>
-            </div> 
+            <>
+              <div className="header__logo" />
+              <div className='header__info'>
+                <Link className='header__buttom' to={'/sign-in'}>Войти</Link>
+              </div>
+            </> :  
+            <>
+              <div className="header__logo" />
+              <div className='header__info'>
+                <Link className='header__buttom' to={'/sign-up'}>Регистрация</Link>
+              </div>
+            </>
         } 
       </header>
+    </>
+    
   );
 }
 

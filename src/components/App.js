@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'; 
+import React, { useEffect, useState, useLayoutEffect } from 'react'; 
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -32,14 +32,26 @@ function App() {
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [successRegistered, setSuccessRegistered] = useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [burger, setBurger] = React.useState(false);
   const [userData, setUserData] = React.useState({
     email: ''
   });
 
+  useLayoutEffect(() => {
+    function updateWidth() {
+      if (window.innerWidth > 440) {
+        setBurger(false);
+      }
+    }
+
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
+
+
   useEffect(() => {
     tokenCheck();
   }, []);
-  
 
   React.useEffect(() => {
     api.getUserInfo()
@@ -92,6 +104,10 @@ function App() {
     
     setIsInfoTooltipOpen(true);
     setSuccessRegistered(isSuccess);
+  }
+
+  function handleBurger() {
+    setBurger(!burger);
   }
 
   function handleCardLike(card) {
@@ -211,6 +227,7 @@ function App() {
     localStorage.removeItem('jwt');
     setLoggedIn(false);
     navigate('/login');
+    setBurger(false);
   }
 
   return (
@@ -221,6 +238,8 @@ function App() {
             loggedIn={loggedIn}
             userData={userData}
             signOut = {signOut}
+            handleBurger = {handleBurger}
+            burger = {burger}
           />
           <Routes>
             <Route path="/sign-up" element={<Register onSubmit={handleSubmitRegister}/>} />
