@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-mesto-auth/static/css/main.6b42ec60.css",
-    "main.js": "/react-mesto-auth/static/js/main.4f4f766c.js",
+    "main.css": "/react-mesto-auth/static/css/main.be6e3e32.css",
+    "main.js": "/react-mesto-auth/static/js/main.4044e2cd.js",
     "static/media/Inter-Medium.woff": "/react-mesto-auth/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
     "static/media/Inter-Black.woff": "/react-mesto-auth/static/media/Inter-Black.c6938660eec019fefd68.woff",
     "static/media/Inter-Regular.woff": "/react-mesto-auth/static/media/Inter-Regular.8c206db99195777c6769.woff",
@@ -15,15 +15,17 @@
     "static/media/trash.svg": "/react-mesto-auth/static/media/trash.823b0cf1b0b7e9cb7cad.svg",
     "static/media/ok.svg": "/react-mesto-auth/static/media/ok.1b6082f862eac35e2514460237d96ecc.svg",
     "static/media/heard-black.svg": "/react-mesto-auth/static/media/heard-black.fe17a515669479b1e649.svg",
+    "static/media/menu.svg": "/react-mesto-auth/static/media/menu.a46d5c1c53c02d60fc80.svg",
     "static/media/Edit_Button.svg": "/react-mesto-auth/static/media/Edit_Button.a1892ea72cb87c8fc3aa.svg",
     "static/media/profile.svg": "/react-mesto-auth/static/media/profile.a086f758840ae814ecde.svg",
     "static/media/Close_Icon.svg": "/react-mesto-auth/static/media/Close_Icon.2ceb783afbab75916ddc.svg",
+    "static/media/Close Icon.svg": "/react-mesto-auth/static/media/Close Icon.87e81ed62ce15cecca0b.svg",
     "static/media/Add-Button.svg": "/react-mesto-auth/static/media/Add-Button.54b1426515811a15ebaf.svg",
-    "main.6b42ec60.css.map": "/react-mesto-auth/static/css/main.6b42ec60.css.map",
-    "main.4f4f766c.js.map": "/react-mesto-auth/static/js/main.4f4f766c.js.map"
+    "main.be6e3e32.css.map": "/react-mesto-auth/static/css/main.be6e3e32.css.map",
+    "main.4044e2cd.js.map": "/react-mesto-auth/static/js/main.4044e2cd.js.map"
   },
   "entrypoints": [
-    "static/css/main.6b42ec60.css",
-    "static/js/main.4f4f766c.js"
+    "static/css/main.be6e3e32.css",
+    "static/js/main.4044e2cd.js"
   ]
 }
